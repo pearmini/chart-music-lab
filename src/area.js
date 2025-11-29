@@ -1,5 +1,6 @@
 import * as Tone from "npm:tone";
 import * as d3 from "npm:d3";
+import {html} from "npm:htl";
 
 function interpolate(urls) {
   return urls.map((_, i) => ((i + 1) * 1) / (urls.length + 1)).map(d3.interpolateCool);
@@ -38,10 +39,7 @@ export async function area({width, cancelURL, urls} = {}) {
 
   const timer = d3.interval(loop, 1000 / frameRate);
 
-  window.addEventListener("keydown", keydown);
-
   function dispose() {
-    window.removeEventListener("keydown", keydown);
     timer.stop();
   }
 
@@ -65,31 +63,18 @@ export async function area({width, cancelURL, urls} = {}) {
     }
   }
 
-  function keydown({key}) {
-    switch (key) {
-      case "a":
-        players[0].start();
-        break;
-      case "s":
-        players[1].start();
-        break;
-      case "d":
-        players[2].start();
-        break;
-      case "f":
-        players[3].start();
-        break;
-      case "c": {
-        data = [];
-        for (let i = 0; i < players.length; i++) {
-          players[i].stop();
-        }
-        const values = map(data);
-        draw(values);
-        cancel.start();
-        break;
-      }
+  function playSound(index) {
+    players[index].start();
+  }
+
+  function clear() {
+    data = [];
+    for (let i = 0; i < players.length; i++) {
+      players[i].stop();
     }
+    const values = map(data);
+    draw(values);
+    cancel.start();
   }
 
   function map(data) {
@@ -141,5 +126,22 @@ export async function area({width, cancelURL, urls} = {}) {
       .attr("fill", (d) => d.fill);
   }
 
-  return {root: svg, dispose};
+  // Create buttons
+  const buttonLabels = ["Tears", "Takerimba", "Blip", "Punch"];
+  const soundButtons = buttonLabels.map((label, index) =>
+    html`<button onclick=${() => playSound(index)}>${label}</button>`
+  );
+  const clearButton = html`<button onclick=${clear}>Clear</button>`;
+
+  const node = html`<div>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;">
+      ${soundButtons}
+      ${clearButton}
+    </div>
+    <div class="card">${svg.node()}</div>
+  </div>`;
+
+  node.dispose = dispose;
+
+  return node;
 }
