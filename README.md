@@ -1,3 +1,3 @@
-# The Code of Music
+# Chart Music Lab
 
-Some of my pieces about music, created by [Observable Framework](https://observablehq.com/framework/)!
+Bring music to charts, created by [D3.js](https://d3js.org/), [Observable Plot](https://observablehq.com/plot/) and [Observable Framework](https://observablehq.com/framework/).
