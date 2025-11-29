@@ -8,16 +8,7 @@ import {area} from "./area.js";
 
 # Area: AV Instrument
 
-> Press _A_, _S_, _D_, _F_ to play sounds, _C_ to clear the canvas
-
-```js
-const measure = view(
-  Inputs.radio(["Waveform", "FFT"], {
-    label: "Measure",
-    value: "Waveform",
-  })
-);
-```
+> Press _a_, _s_, _d_, _f_ to play sounds, _c_ to clear the canvas
 
 ```js
 const urls = [
@@ -31,7 +22,7 @@ const cancelURL = await FileAttachment("samples/cancel.wav").url();
 ```
 
 ```js
-const {root, dispose} = await area({urls, measure, width, cancelURL});
+const {root, dispose} = await area({urls, width, cancelURL});
 
 invalidation.then(() => dispose());
 

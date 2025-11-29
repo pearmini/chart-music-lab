@@ -3,8 +3,8 @@ toc: false
 ---
 
 <div class="hero">
-  <h1>Music and Charts</h1>
-  <h2>Bring music to charts, created by <a href="https://charmingjs.org/" target="__blank">Charming</a>, <a href="https://d3js.org/" target="__blank">D3</a> and <a href="https://observablehq.com/plot/">Observable Plot</a> !</h2>
+  <h1>Chart Music Lab</h1>
+  <h2>Bring music to charts, created by <a href="https://d3js.org/" target="__blank">D3</a> and <a href="https://observablehq.com/plot/">Observable Plot</a> !</h2>
 </div>
 
 <div class="grid grid-cols-3" style="grid-auto-rows: 304px">

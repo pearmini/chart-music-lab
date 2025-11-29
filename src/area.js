@@ -5,21 +5,20 @@ function interpolate(urls) {
   return urls.map((_, i) => ((i + 1) * 1) / (urls.length + 1)).map(d3.interpolateCool);
 }
 
-export async function area({measure, width, cancelURL, urls} = {}) {
-  const isWaveform = measure === "Waveform";
-  const schemes = isWaveform ? "Categorical" : "Sequential";
+export async function area({width, cancelURL, urls} = {}) {
+  const schemes = "Categorical";
   const height = width * 0.618;
   const marginLeft = 0;
   const marginRight = 0;
-  const marginTop = isWaveform ? 50 : 0;
-  const marginBottom = isWaveform ? 50 : 0;
+  const marginTop = 50;
+  const marginBottom = 50;
   const frameRate = 10;
 
   const players = urls.map((url) => new Tone.Player(url).toDestination());
   const cancel = new Tone.Player(cancelURL).toDestination();
 
   const analyzers = players.map((player) => {
-    const analyzer = new (isWaveform ? Tone.Waveform : Tone.FFT)(256);
+    const analyzer = new Tone.Waveform(256);
     player.connect(analyzer);
     return analyzer;
   });
@@ -80,17 +79,23 @@ export async function area({measure, width, cancelURL, urls} = {}) {
       case "f":
         players[3].start();
         break;
-      case "c":
-        state.data = [];
+      case "c": {
+        data = [];
+        for (let i = 0; i < players.length; i++) {
+          players[i].stop();
+        }
+        const values = map(data);
+        draw(values);
         cancel.start();
         break;
+      }
     }
   }
 
   function map(data) {
     const series = d3
       .stack()
-      .offset(isWaveform ? d3.stackOffsetDiverging : null)
+      .offset(d3.stackOffsetDiverging)
       .keys(d3.union(data.map((d) => d.name)))
       .value(([, D], key) => D.get(key).value)(
       d3.index(
