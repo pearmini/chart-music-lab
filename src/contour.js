@@ -59,7 +59,7 @@ export async function contour({urls = {}, width = 640, height = width}) {
 
   const margin = 60;
   const innerRadius = 0;
-  const outerRadius = width / 2 - margin;
+  const outerRadius = width * 0.7 - margin;
   const n = 10;
   const svg = d3
     .create("svg")
@@ -97,7 +97,7 @@ export async function contour({urls = {}, width = 640, height = width}) {
         if (!d.every(isValid)) return null;
         const j = arr.length - i - 1;
         const innerRadius = y(j);
-        const outerRadius = y(j) + y.bandwidth() * 3;
+        const outerRadius = y(j) + y.bandwidth();
         const y1 = d3
           .scaleLinear()
           .domain([0, d3.max(d)])
