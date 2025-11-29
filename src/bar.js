@@ -184,7 +184,7 @@ export function bar({tracks, width}) {
     .style("width", "100%")
     .style("height", "auto")
     .style("font", "10px sans-serif")
-    .style("background-color", "black")
+    .attr("style", "width: 100%; height: auto; font: 10px sans-serif;")
     .on("click", toggle);
 
   const circle = svg.append("circle").call(drag);

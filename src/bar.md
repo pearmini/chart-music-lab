@@ -24,5 +24,8 @@ const urls = d3.shuffle([...sounds, ...sounds]);
 const tracks = await tracksof(urls);
 const {root, dispose} = bar({tracks, width});
 invalidation.then(() => dispose());
-display(root.node());
 ```
+
+<div class="card">
+${root.node()}
+</div>

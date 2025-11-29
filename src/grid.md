@@ -220,5 +220,5 @@ function postprocess() {
 ```
 
 ```js
-display(html`<div style="padding-top:1em">${cellChart}</div>`);
+display(html`<div style="padding-top:1em" class="card">${cellChart}</div>`);
 ```

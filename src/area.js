@@ -32,7 +32,7 @@ export async function area({width, cancelURL, urls} = {}) {
     .attr("width", width)
     .attr("height", height)
     .attr("viewBox", [0, 0, width, height])
-    .style("background-color", "black");
+    .attr("style", "width: 100%; height: auto; font: 10px sans-serif;");
 
   let data = [];
 
