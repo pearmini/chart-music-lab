@@ -8,8 +8,6 @@ import {area} from "./area.js";
 
 # Area: AV Instrument
 
-> Press _a_, _s_, _d_, _f_ to play sounds, _c_ to clear the canvas
-
 ```js
 const urls = [
   await FileAttachment("samples/tears.wav").url(),
@@ -22,11 +20,9 @@ const cancelURL = await FileAttachment("samples/cancel.wav").url();
 ```
 
 ```js
-const {root, dispose} = await area({urls, width, cancelURL});
+const node = await area({urls, width, cancelURL});
 
-invalidation.then(() => dispose());
+invalidation.then(() => node.dispose());
+
+display(node);
 ```
-
-<div class="card">
-${root.node()}
-</div>
