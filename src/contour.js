@@ -98,7 +98,10 @@ export async function contour({urls = {}, width = 640, height = width}) {
         const j = arr.length - i - 1;
         const innerRadius = y(j);
         const outerRadius = y(j) + y.bandwidth() * 3;
-        const y1 = d3.scaleLinear().domain([0, d3.max(d)]).range([innerRadius, outerRadius]);
+        const y1 = d3
+          .scaleLinear()
+          .domain([0, d3.max(d)])
+          .range([innerRadius, outerRadius]);
         const path = area.innerRadius(() => innerRadius).outerRadius((v) => y1(v))(d);
         return path;
       });
@@ -135,6 +138,10 @@ export async function contour({urls = {}, width = 640, height = width}) {
     <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;">${soundButtons}</div>
     <div class="card">${svg}</div>
   </div>`;
+
+  node.dispose = () => {
+    stop();
+  };
 
   return node;
 }

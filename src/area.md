@@ -25,6 +25,8 @@ const cancelURL = await FileAttachment("samples/cancel.wav").url();
 const {root, dispose} = await area({urls, width, cancelURL});
 
 invalidation.then(() => dispose());
-
-display(root.node());
 ```
+
+<div class="card">
+${root.node()}
+</div>

@@ -29,5 +29,8 @@ const sounds = {
 
 ```js
 const node = await contour({urls: sounds});
+
+invalidation.then(() => node.dispose());
+
 display(node);
 ```
