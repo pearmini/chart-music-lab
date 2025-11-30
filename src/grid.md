@@ -4,6 +4,8 @@ toc: false
 
 # Github Melody Sequencer
 
+What do my [GitHub](https://github.com/pearmini) contributions sound like?
+
 ```js
 import * as Tone from "npm:tone";
 import {Mutable} from "observablehq:stdlib";

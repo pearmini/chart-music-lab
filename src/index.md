@@ -4,7 +4,7 @@ toc: false
 
 <div class="hero">
   <h1>Chart Music Lab</h1>
-  <h2>What do chats sounds like? How can we draw charts with music?</h2>
+  <h2>What do charts sounds like? How can we draw charts with music?</h2>
 </div>
 
 <div class="grid grid-cols-3">
