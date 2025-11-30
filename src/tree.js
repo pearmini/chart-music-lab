@@ -127,7 +127,7 @@ export function tree(name, {width = 480, height = 480} = {}) {
       .append("g")
       .attr("transform", `translate(${start}, ${baselineY - cellSize - 5})`)
       .append(() => {
-        return apack.text(name, {cellSize, word: {strokeWidth: 1.5, stroke: "#999"}}).render();
+        return apack.text(name, {cellSize, word: {strokeWidth: 1.5, stroke: "#ccc"}}).render();
       });
   } catch (e) {
     svg
@@ -136,7 +136,7 @@ export function tree(name, {width = 480, height = 480} = {}) {
       .attr("x", "100%")
       .attr("y", "100%")
       .attr("text-anchor", "end")
-      .attr("fill", "#999")
+      .attr("fill", "#ccc")
       .attr("font-size", 16)
       .attr("font-family", "monospace")
       .text(ellipsis(name, 18));
@@ -148,8 +148,8 @@ export function tree(name, {width = 480, height = 480} = {}) {
   // Draw links (edges)
   g.append("g")
     .attr("fill", "none")
-    .attr("stroke", "#555")
-    .attr("stroke-opacity", 0.4)
+    .attr("stroke", "#bbb")
+    .attr("stroke-opacity", 0.6)
     .attr("stroke-width", 1.5)
     .selectAll("path")
     .data(root.links())
@@ -170,7 +170,7 @@ export function tree(name, {width = 480, height = 480} = {}) {
     .attr("cx", (d) => d.x)
     .attr("cy", (d) => d.y)
     .attr("r", 3)
-    .attr("fill", "#999");
+    .attr("fill", "#ccc");
 
   // Draw flowers
   const len = 80;
@@ -184,7 +184,7 @@ export function tree(name, {width = 480, height = 480} = {}) {
     .attr("cx", flowersX)
     .attr("cy", (_) => height - len)
     .attr("r", 3)
-    .attr("fill", "#999");
+    .attr("fill", "#ccc");
 
   svg
     .append("g")
@@ -195,7 +195,7 @@ export function tree(name, {width = 480, height = 480} = {}) {
     .attr("x2", flowersX)
     .attr("y1", (_) => height - len)
     .attr("y2", (_) => height - 20)
-    .attr("stroke", "#555")
+    .attr("stroke", "#bbb")
     .attr("stroke-width", 1);
 
   function dfs(node, callback) {
@@ -234,7 +234,7 @@ export function tree(name, {width = 480, height = 480} = {}) {
     Tone.Transport.cancel();
 
     // Reset all dots to original color
-    dots.attr("fill", "#999");
+    dots.attr("fill", "#ccc");
 
     // Start AudioContext from user interaction
     await Tone.start();
