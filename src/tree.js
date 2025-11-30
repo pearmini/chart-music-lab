@@ -1,8 +1,14 @@
 import * as d3 from "npm:d3";
 import * as apack from "npm:apackjs";
+import * as Tone from "npm:tone";
+
+function uid() {
+  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+}
 
 function toTree(codes) {
   const data = {
+    id: uid(),
     children: [],
   };
 
@@ -12,7 +18,7 @@ function toTree(codes) {
   while (currentIndex < codes.length && visited.length > 0) {
     const code = +codes[currentIndex];
     const current = visited.shift();
-    const children = d3.range(code).map((i) => ({children: []}));
+    const children = d3.range(code).map((i) => ({id: uid(), children: []}));
     current.children = children;
     visited.push(...children);
     currentIndex++;
@@ -156,9 +162,10 @@ export function tree(name, {width = 480, height = 480} = {}) {
         .y((d) => d.y)
     );
 
-  g.append("g")
+  const dots = g
+    .append("g")
     .selectAll("circle")
-    .data(root.descendants().filter((d) => d.parent))
+    .data(root.descendants())
     .join("circle")
     .attr("cx", (d) => d.x)
     .attr("cy", (d) => d.y)
@@ -191,5 +198,108 @@ export function tree(name, {width = 480, height = 480} = {}) {
     .attr("stroke", "#555")
     .attr("stroke-width", 1);
 
-  return svg.node();
+  function dfs(node, callback) {
+    callback(node);
+    if (node.children) {
+      node.children.forEach((child) => dfs(child, callback));
+    }
+  }
+
+  // Track current playback state
+  let currentPart = null;
+  let currentSynth = null;
+  let resetCallbackId = null;
+
+  async function play() {
+    // Stop existing playback
+    if (currentPart) {
+      currentPart.stop();
+      currentPart.dispose();
+      currentPart = null;
+    }
+
+    if (currentSynth) {
+      currentSynth.dispose();
+      currentSynth = null;
+    }
+
+    // Clear scheduled reset callback
+    if (resetCallbackId !== null) {
+      Tone.Transport.clear(resetCallbackId);
+      resetCallbackId = null;
+    }
+
+    // Stop Transport and cancel all scheduled events
+    Tone.Transport.stop();
+    Tone.Transport.cancel();
+
+    // Reset all dots to original color
+    dots.attr("fill", "#999");
+
+    // Start AudioContext from user interaction
+    await Tone.start();
+
+    currentSynth = new Tone.PolySynth().toDestination();
+    const scalePitch = d3.scaleLinear().domain([0, root.height]).range([220, 880]);
+
+    let scheduleTime = 0;
+    const parts = [];
+
+    dfs(root, (node) => {
+      const frequency = scalePitch(node.depth);
+      const nextDuration = (() => {
+        if (!node.parent) return 1;
+        const index = node.parent.children.indexOf(node);
+        const n = node.parent.children.length;
+        return 0.125 + ((index + 1) / n) * 0.875;
+      })();
+      const duration = nextDuration * 0.5;
+      const noteName = Tone.Frequency(frequency).toNote();
+      parts.push({
+        time: scheduleTime * 0.5,
+        note: noteName,
+        duration: duration,
+        id: node.data.id,
+      });
+      scheduleTime += nextDuration;
+    });
+
+    currentPart = new Tone.Part((time, value) => {
+      currentSynth.triggerAttackRelease(value.note, value.duration, time);
+      dots.attr("fill", "#999");
+      dots.filter((d) => d.data.id === value.id).attr("fill", "red");
+    }, parts);
+
+    currentPart.start(0);
+
+    // Calculate when all sounds finish (last note time + its duration)
+    const lastNote = parts[parts.length - 1];
+    const endTime = lastNote.time + lastNote.duration;
+
+    // Schedule callback to reset all dots after all sounds finish
+    resetCallbackId = Tone.Transport.schedule(() => {
+      dots.attr("fill", "#999");
+      resetCallbackId = null;
+    }, endTime);
+
+    Tone.Transport.start();
+  }
+
+  svg.on("click", async () => await play()).style("cursor", "pointer");
+
+  const node = svg.node();
+
+  node.dispose = () => {
+    if (currentPart) {
+      currentPart.stop();
+      currentPart.dispose();
+      currentPart = null;
+    }
+    if (currentSynth) {
+      currentSynth.dispose();
+      currentSynth = null;
+    }
+  };
+
+  return node;
 }
