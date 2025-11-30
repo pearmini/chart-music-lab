@@ -35,7 +35,7 @@ toc: false
   flex-direction: column;
   align-items: center;
   font-family: var(--sans-serif);
-  margin: 4rem 0 8rem;
+  margin: 4rem 0 6rem;
   text-wrap: balance;
   text-align: center;
 }
@@ -84,6 +84,18 @@ toc: false
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.card {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.card:hover {
+  border: 1px solid currentColor;
+  cursor: pointer;
 }
 
 </style>
