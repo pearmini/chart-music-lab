@@ -8,7 +8,7 @@ import {contour} from "./contour.js";
 
 # Contour: Timbre
 
-The sounds come from [Spectrogram](https://musiclab.chromeexperiments.com/Spectrogram/).
+How do you draw contours with sound frequencies? Click buttons to explore! The sounds come from and are inspired by [Spectrogram](https://musiclab.chromeexperiments.com/Spectrogram/).
 
 ```js
 const data = await FileAttachment("./data/volcano.json").json();
