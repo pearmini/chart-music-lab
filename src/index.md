@@ -7,7 +7,7 @@ toc: false
   <h2>What do chats sounds like? How can we draw charts with music?</h2>
 </div>
 
-<div class="grid grid-cols-3" style="grid-auto-rows: 304px">
+<div class="grid grid-cols-3">
   <div class="card-wrapper">
     <div class="card">
       <a class="link" href="/area"><img src="/img/streamgraph.png" width="100%"/></a>
@@ -107,7 +107,6 @@ toc: false
 .card-wrapper {
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 .card {
@@ -115,8 +114,8 @@ toc: false
   margin: 0;
   overflow: hidden;
   transition: border-color 0.2s ease;
-  flex: 1;
-  min-height: 0;
+  aspect-ratio: 1 / 0.75;
+  width: 100%;
 }
 
 .card:hover {
