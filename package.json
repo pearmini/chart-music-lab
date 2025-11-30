@@ -1,6 +1,23 @@
 {
+  "name": "chart-music-lab",
+  "version": "0.1.0",
+  "description": "Chart Music Lab",
+  "author": "Bairui SU",
+  "license": "MIT",
+  "homepage": "https://music.bairui.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pearmini/chart-music-lab.git"
+  },
+  "keywords": [
+    "chart",
+    "music",
+    "lab",
+    "d3",
+    "observable",
+    "tone"
+  ],
   "type": "module",
-  "private": true,
   "scripts": {
     "clean": "rimraf src/.observablehq/cache",
     "build": "observable build",

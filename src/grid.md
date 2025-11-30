@@ -2,7 +2,9 @@
 toc: false
 ---
 
-# Github Melody Sequencer
+# Github Melody Sequencer <a href="https://github.com/pearmini/chart-music-lab/blob/main/src/grid.md" target="_blank">&lt;/&gt;</a>
+
+What do my [GitHub](https://github.com/pearmini) contributions sound like?
 
 ```js
 import * as Tone from "npm:tone";

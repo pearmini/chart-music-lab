@@ -6,9 +6,9 @@ toc: false
 import {contour} from "./contour.js";
 ```
 
-# Contour: Timbre
+# Contour: Timbre <a href="https://github.com/pearmini/chart-music-lab/blob/main/src/contour.md" target="_blank">&lt;/&gt;</a>
 
-The sounds come from [Spectrogram](https://musiclab.chromeexperiments.com/Spectrogram/).
+How do you draw contours with sound frequencies? Click buttons to explore! The sounds come from and are inspired by [Spectrogram](https://musiclab.chromeexperiments.com/Spectrogram/).
 
 ```js
 const data = await FileAttachment("./data/volcano.json").json();

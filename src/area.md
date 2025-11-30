@@ -6,7 +6,9 @@ toc: false
 import {area} from "./area.js";
 ```
 
-# Area: AV Instrument
+# Area: AV Instrument <a href="https://github.com/pearmini/chart-music-lab/blob/main/src/area.md" target="_blank">&lt;/&gt;</a>
+
+How do you draw a [streamgraph](https://en.wikipedia.org/wiki/Streamgraph) with sounds? Click the buttons to watch it grow!
 
 ```js
 const urls = [
