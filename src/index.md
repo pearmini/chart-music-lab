@@ -4,7 +4,7 @@ toc: false
 
 <div class="hero">
   <h1>Chart Music Lab</h1>
-  <h2>What do charts sounds like? How can we draw charts with music? <a href="https://github.com/pearmini/chart-music-lab" target="_blank">&lt;/&gt;</a></h2>
+  <h2>What do charts sound like? How can we draw charts with music? <a href="https://github.com/pearmini/chart-music-lab" target="_blank">&lt;/&gt;</a></h2>
 </div>
 
 <div class="grid grid-cols-3">
