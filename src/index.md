@@ -42,7 +42,7 @@ toc: false
     <div class="card">
       <a class="link" href="/tree"><img src="/img/tree.png" style="width:100%;height:100%;object-fit:cover"/></a>
     </div>
-    <div class="card-title">Tree: Chord</div>
+    <div class="card-title">Tree: Harmony</div>
   </div>
 </div>
 

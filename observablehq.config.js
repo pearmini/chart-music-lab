@@ -12,7 +12,7 @@ export default {
     {name: "Dot: Dodge Drum", path: "/dot"},
     {name: "Grid: Github Melody Sequencer", path: "/grid"},
     {name: "Contour: Timbre", path: "/contour"},
-    {name: "Tree: Chord", path: "/tree"},
+    {name: "Tree: Harmony", path: "/tree"},
   ],
 
   // Content to add to the head of the page, e.g. for a favicon:
