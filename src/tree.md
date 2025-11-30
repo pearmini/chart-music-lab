@@ -6,28 +6,19 @@ toc: false
 
 Play chords following the structure of tree like this [Turtle Melody](https://editor.p5js.org/luisa/sketches/H11ZbqNa7).
 
-## Flare
-
 ```js
-const data = await FileAttachment("./data/flare.json").json();
+import {tree} from "./tree.js";
+import {html} from "npm:htl";
 ```
 
 ```js
-const node = Plot.plot({
-  axis: null,
-  margin: 10,
-  marginLeft: 40,
-  marginRight: 160,
-  width: 928,
-  height: 1800,
-  marks: [Plot.tree(flare, {path: "name", delimiter: "."})],
-});
-
-display(node);
+const names = await FileAttachment("./data/names.json").json();
 ```
-
-## Data
 
 ```js
-display(Inputs.table(data));
+const trees = names.map((item) => tree(item.name));
 ```
+
+<div class="grid grid-cols-3">
+${trees.map(node => html`<div class="card">${node}</div>`)}
+</div>
