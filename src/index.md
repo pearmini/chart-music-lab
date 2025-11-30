@@ -4,7 +4,7 @@ toc: false
 
 <div class="hero">
   <h1>Chart Music Lab</h1>
-  <h2>Bring music to charts, created by <a href="https://d3js.org/" target="__blank">D3</a> and <a href="https://observablehq.com/plot/">Observable Plot</a> !</h2>
+  <h2>What do chats sounds like? How can we draw charts with music?</h2>
 </div>
 
 <div class="grid grid-cols-3" style="grid-auto-rows: 304px">
