@@ -8,6 +8,8 @@ import {area} from "./area.js";
 
 # Area: AV Instrument
 
+How do you draw a [streamgraph](https://en.wikipedia.org/wiki/Streamgraph) with sounds? Click the buttons to watch it grow!
+
 ```js
 const urls = [
   await FileAttachment("samples/tears.wav").url(),
