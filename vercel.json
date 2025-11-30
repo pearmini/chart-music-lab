@@ -1,0 +1,28 @@
+{
+  "rewrites": [
+    {
+      "source": "/area",
+      "destination": "/area.html"
+    },
+    {
+      "source": "/bar",
+      "destination": "/bar.html"
+    },
+    {
+      "source": "/dot",
+      "destination": "/dot.html"
+    },
+    {
+      "source": "/grid",
+      "destination": "/grid.html"
+    },
+    {
+      "source": "/contour",
+      "destination": "/contour.html"
+    },
+    {
+      "source": "/tree",
+      "destination": "/tree.html"
+    }
+  ]
+}
