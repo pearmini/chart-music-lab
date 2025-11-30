@@ -8,28 +8,40 @@ toc: false
 </div>
 
 <div class="grid grid-cols-3" style="grid-auto-rows: 304px">
-  <div class="card">
-    <a class="link" href="/area"><img src="/img/streamgraph.png" width="100%"/></a>
+  <div class="card-wrapper">
+    <div class="card">
+      <a class="link" href="/area"><img src="/img/streamgraph.png" width="100%"/></a>
+    </div>
     <div class="card-title">Area: AV Instrument</div>
   </div>
-  <div class="card">
-    <a class="link" href="/bar"><img src="/img/eye.png" /></a>
+  <div class="card-wrapper">
+    <div class="card">
+      <a class="link" href="/bar"><img src="/img/eye.png" /></a>
+    </div>
     <div class="card-title">Bar: Composition Eye</div>
   </div>
-  <div class="card">
-    <a class="link" href="/dot"><img src="/img/dot.png" /></a>
+  <div class="card-wrapper">
+    <div class="card">
+      <a class="link" href="/dot"><img src="/img/dot.png" /></a>
+    </div>
     <div class="card-title">Dot: Dodge Drum</div>
   </div>
-  <div class="card">
-    <a class="link" href="/grid"><img src="/img/melody.png" /></a>
+  <div class="card-wrapper">
+    <div class="card">
+      <a class="link" href="/grid"><img src="/img/melody.png" /></a>
+    </div>
     <div class="card-title">Grid: Github Melody Sequencer</div>
   </div>
-  <div class="card">
-    <a class="link" href="/contour"><img src="/img/contour.png" style="width:100%;height:100%;object-fit:cover"/></a>
+  <div class="card-wrapper">
+    <div class="card">
+      <a class="link" href="/contour"><img src="/img/contour.png" style="width:100%;height:100%;object-fit:cover"/></a>
+    </div>
     <div class="card-title">Contour: Timbre</div>
   </div>
-  <div class="card">
-    <a class="link" href="/tree"><img src="/img/tree.png" style="width:100%;height:100%;object-fit:cover"/></a>
+  <div class="card-wrapper">
+    <div class="card">
+      <a class="link" href="/tree"><img src="/img/tree.png" style="width:100%;height:100%;object-fit:cover"/></a>
+    </div>
     <div class="card-title">Tree: Chord</div>
   </div>
 </div>
@@ -92,14 +104,19 @@ toc: false
   transform: translate(-50%, -50%);
 }
 
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .card {
   padding: 0;
   margin: 0;
   overflow: hidden;
   transition: border-color 0.2s ease;
-  position: relative;
-  display: flex;
-  flex-direction: column;
+  flex: 1;
+  min-height: 0;
 }
 
 .card:hover {
@@ -108,18 +125,12 @@ toc: false
 }
 
 .card-title {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 12px 16px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
-  color: white;
+  padding: 12px 8px 0;
   font-size: 14px;
   font-weight: 500;
   text-align: center;
-  pointer-events: none;
-  z-index: 1;
+  color: var(--theme-foreground);
+  font-family: var(--sans-serif);
 }
 
 </style>
