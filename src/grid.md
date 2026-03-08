@@ -22,7 +22,7 @@ const data = (await FileAttachment("./data/contributions.csv").csv())
   .map((d) => ({count: +d.contributionCount, date: new Date(d.date)}))
   .filter((d) => {
     const year = d.date.getUTCFullYear();
-    return year >= 2021 && year <= 2024;
+    return year >= 2022 && year <= 2025;
   });
 const key = (year, day, week) => `${year},${day},${week}`;
 const datumByTime = new Map(data.map((d) => [key(year(d.date), day(d.date), week(d.date)), d]));
@@ -86,21 +86,21 @@ function onBeat(time) {
 ```
 
 ```js
+const range = Inputs.range(domainCount, {step: 1, value: 7, label: "Threshold"});
+range.onchange = (v) => updateThreshold(+v.target.value);
+display(range);
+```
+
+```js
 const isPlaying = view(
   Inputs.button(
     [
       ["Play", () => true],
       ["Stop", () => false],
     ],
-    {value: false, label: "Controls"}
+    {value: false, label: ""}
   )
 );
-```
-
-```js
-const range = Inputs.range(domainCount, {step: 1, value: 7, label: "Threshold"});
-range.onchange = (v) => updateThreshold(+v.target.value);
-display(range);
 ```
 
 ```js
@@ -150,7 +150,7 @@ const cellChart = Plot.plot({
       fy: (d) => year(d.date),
       x: (d) => week(d.date),
       y: (d) => day(d.date),
-      fill: (d) => d.count,
+      fill: (d) => d.count > 70 ? 10: d.count,
       inset: 0.5,
       tip: {
         format: {
